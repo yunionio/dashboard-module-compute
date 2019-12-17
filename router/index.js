@@ -455,7 +455,7 @@ export default {
           path: '/ansibletemplate',
           meta: {
             label: '模版',
-            // permission: '',
+            permission: 'ansible_devtool_templates_list',
           },
           component: Layout,
           children: [
@@ -475,7 +475,7 @@ export default {
           path: '/ansibleplaybook',
           meta: {
             label: '任务',
-            // permission: '',
+            permission: 'ansible_ansibleplaybooks_list',
           },
           component: Layout,
           children: [
