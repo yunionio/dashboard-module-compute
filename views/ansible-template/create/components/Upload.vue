@@ -35,7 +35,6 @@ export default {
     },
     defaultFiles (fileBuffers) {
       if (fileBuffers) {
-        console.log(fileBuffers, 'asdadasd')
         Object.keys(fileBuffers).forEach((key, index) => {
           const buffer = new Uint8Array(fileBuffers[key]).buffer
           const blob = new Blob([buffer])

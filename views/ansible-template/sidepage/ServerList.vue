@@ -45,10 +45,13 @@ export default {
         {
           label: '取消关联',
           action: () => {
+            this.unbind(this.list.selectedItems)
           },
           meta: (obj) => {
             return {
               buttonType: 'primary',
+              validate: !!this.list.selectedItems.length,
+              // tooltip,
             }
           },
         },
@@ -57,13 +60,7 @@ export default {
         {
           label: '取消关联',
           action: (obj) => {
-            this.createDialog('AnsibleTemplateUnbindServerDialog', {
-              resId: this.resId,
-              data: [obj],
-              columns: this.columns,
-              title: '取消关联',
-              list: this.list,
-            })
+            this.unbind([obj])
           },
         },
       ],
@@ -71,6 +68,17 @@ export default {
   },
   created () {
     this.list.fetchData()
+  },
+  methods: {
+    unbind (data) {
+      this.createDialog('AnsibleTemplateUnbindServerDialog', {
+        data,
+        resId: this.resId,
+        columns: this.columns,
+        title: '取消关联',
+        list: this.list,
+      })
+    },
   },
 }
 </script>

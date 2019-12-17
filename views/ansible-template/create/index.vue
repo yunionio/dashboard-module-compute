@@ -55,6 +55,7 @@ export default {
         wrapperCol: { span: CreateServerForm.wrapperCol },
         labelCol: { span: CreateServerForm.labelCol },
       },
+      modNames: ['yum', 'package', 'group', 'user', 'get_url', 'file', 'unarchive', 'template', 'service'],
     }
   },
   computed: {
@@ -102,17 +103,60 @@ export default {
           'hosts',
           {
             initialValue: hostStr,
+            validateFirst: true,
             rules: [
               { required: true, message: '请输入主机' },
+              {
+                validator: (rule, value, _callback) => {
+                  const arr = value.split(' ')
+                  if (arr && arr.length > 0) {
+                    if (arr[0] !== 'HOSTNAME') {
+                      return _callback('请输入正确格式，如：HOSTNAME key=value key=value')
+                    }
+                    for (let i = 1; i < arr.length; i++) {
+                      const _itemArr = arr[i].split('=')
+                      if (_itemArr.length !== 2) {
+                        return _callback('请输入正确格式，如：HOSTNAME key=value key=value')
+                      }
+                    }
+                  }
+                  return _callback()
+                },
+              },
             ],
           },
         ],
         playbook: [
           'playbook',
           {
+            validateFirst: true,
             initialValue: moduleStr,
             rules: [
               { required: true, message: '请输入playbook' },
+              {
+                validator: (rule, value, _callback) => {
+                  const modeItems = value.replace(/[\r\n]/g, '<br/>').split('<br/>')
+                  if (modeItems && modeItems.length > 0) {
+                    for (let i = 0; i < modeItems.length; i++) {
+                      const items = modeItems[i].split(' ')
+                      const [name, ...values] = items
+                      if (this.modNames.indexOf(name) === -1) {
+                        return _callback('请输入正确格式，如：package key=value key=value')
+                      }
+                      if (!values || values.length === 0) {
+                        return _callback('请输入正确格式，如：package key=value key=value')
+                      }
+                      for (let j = 0; j < values.length; j++) {
+                        const arr = values[j].split('=')
+                        if (arr.length !== 2) {
+                          return _callback('请输入正确格式，如：package key=value key=value')
+                        }
+                      }
+                    }
+                  }
+                  return _callback()
+                },
+              },
             ],
           },
         ],
@@ -209,9 +253,9 @@ export default {
       })
     },
     async handleConfirm () {
-      this.loading = true
       try {
         const values = await this.validateForm()
+        this.loading = true
         if (this.id) {
           await this.manager.update({
             id: this.id,

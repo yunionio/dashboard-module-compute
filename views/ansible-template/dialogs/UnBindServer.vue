@@ -30,7 +30,7 @@ export default {
       const manager = new this.$Manager('devtool_templates')
       this.loading = true
       try {
-        if (this.params.data > 1) {
+        if (this.params.data.length > 1) {
           manager.batchPerformAction({
             ids: this.params.data.map(item => item.id),
             action: `${this.params.resId}/unbind`,
@@ -40,7 +40,7 @@ export default {
             id: this.params.resId,
             action: 'unbind',
             data: {
-              server_id: this.params.data[0].id,
+              server_id: this.params.data[0].server_id,
             },
           })
         }

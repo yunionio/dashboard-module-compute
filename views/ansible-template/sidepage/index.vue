@@ -35,6 +35,7 @@ export default {
       detailTabs: [
         { label: '详情', key: 'detail' },
         { label: '主机列表', key: 'server-list' },
+        { label: '操作日志', key: 'event-drawer' },
       ],
     }
   },
