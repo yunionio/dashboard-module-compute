@@ -12,7 +12,7 @@ import WindowsMixin from '@/mixins/windows'
 import { ENABLED_OPTS } from '@/constants'
 
 export default {
-  name: 'HostList',
+  name: 'AnsibleTemplateList',
   mixins: [WindowsMixin],
   props: {
     getParams: {

@@ -10,7 +10,7 @@ import { getStatusTableColumn, getNameDescriptionTableColumn, getProjectTableCol
 import WindowsMixin from '@/mixins/windows'
 
 export default {
-  name: 'AnsiblePlaybook',
+  name: 'AnsiblePlaybookList',
   mixins: [WindowsMixin],
   props: {
     getParams: {

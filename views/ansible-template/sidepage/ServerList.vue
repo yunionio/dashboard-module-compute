@@ -11,7 +11,7 @@ import { getNameDescriptionTableColumn } from '@/utils/common/tableColumn'
 import WindowsMixin from '@/mixins/windows'
 
 export default {
-  name: 'RDSAccountList',
+  name: 'AnsibleTemplateServerList',
   mixins: [WindowsMixin],
   props: {
     getParams: {
