@@ -45,13 +45,19 @@ export default {
         {
           label: '取消关联',
           action: () => {
+<<<<<<< HEAD
             this.unbind(this.list.selectedItems)
+=======
+>>>>>>> 新增运维工具ansible（模版列表，任务列表）
           },
           meta: (obj) => {
             return {
               buttonType: 'primary',
+<<<<<<< HEAD
               validate: !!this.list.selectedItems.length,
               // tooltip,
+=======
+>>>>>>> 新增运维工具ansible（模版列表，任务列表）
             }
           },
         },
@@ -60,7 +66,17 @@ export default {
         {
           label: '取消关联',
           action: (obj) => {
+<<<<<<< HEAD
             this.unbind([obj])
+=======
+            this.createDialog('AnsibleTemplateUnbindServerDialog', {
+              resId: this.resId,
+              data: [obj],
+              columns: this.columns,
+              title: '取消关联',
+              list: this.list,
+            })
+>>>>>>> 新增运维工具ansible（模版列表，任务列表）
           },
         },
       ],
@@ -69,6 +85,7 @@ export default {
   created () {
     this.list.fetchData()
   },
+<<<<<<< HEAD
   methods: {
     unbind (data) {
       this.createDialog('AnsibleTemplateUnbindServerDialog', {
@@ -80,5 +97,7 @@ export default {
       })
     },
   },
+=======
+>>>>>>> 新增运维工具ansible（模版列表，任务列表）
 }
 </script>
