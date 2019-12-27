@@ -104,7 +104,7 @@ export default {
               data: this.list.selectedItems,
               columns: this.columns,
               title: '删除',
-              list: this.list,
+              list: this.list
             })
           },
           meta: () => this.$getDeleteResult(this.list.selectedItems),
@@ -135,6 +135,9 @@ export default {
               columns: this.columns,
               title: '删除',
               list: this.list,
+              success: () => {
+                this.destroySidePages()
+              },
             })
           },
           meta: obj => this.$getDeleteResult(obj),
