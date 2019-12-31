@@ -555,7 +555,6 @@ export default {
                   return ret
                 },
               },
-              disableDeleteAction(this),
               {
                 label: '挂起',
                 permission: 'server_perform_suspend',
@@ -612,6 +611,7 @@ export default {
                   return ret
                 },
               },
+              disableDeleteAction(this),
               {
                 label: '删除',
                 permission: 'server_delete',
